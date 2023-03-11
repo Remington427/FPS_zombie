@@ -432,7 +432,8 @@ GameObject:
   - component: {fileID: 4528103534220429305}
   - component: {fileID: 5613200562967204993}
   - component: {fileID: 1048808571866897009}
-  m_Layer: 0
+  - component: {fileID: 6301716704549888005}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -487,8 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 677242326117385205}
-  walkingSpeed: 7.5
-  runningSpeed: 15
+  walkingSpeed: 5
+  runningSpeed: 10
   jumpSpeed: 8
   gravity: 20
   rotationSpeed: 2
@@ -527,3 +528,17 @@ MonoBehaviour:
   syncInterval: 0.1
   composantsADesactiver:
   - {fileID: 4528103534220429305}
+--- !u!114 &6301716704549888005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9096193558998030258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a9d5d029eca1545bba70c3ec90b52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoint: 3
+  hitPoint: 0

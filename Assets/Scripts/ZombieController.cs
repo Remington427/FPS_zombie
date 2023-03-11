@@ -6,6 +6,9 @@ public class ZombieController : MonoBehaviour
 {
     public Transform target;
 
+    public MeleeWeapon weaponRight;
+    public MeleeWeapon weaponLeft;
+
     UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     Animator animator;
@@ -13,6 +16,7 @@ public class ZombieController : MonoBehaviour
     const string STAND_STATE = "Stand";
     public const string DEFEATED_STATE = "Defeated";
     public const string RUN_STATE = "Run";
+    public const string ATTACK_STATE = "Attack";
 
     public string currentAction;
 
@@ -54,6 +58,19 @@ public class ZombieController : MonoBehaviour
             if(MovingToTarget())
             {
                 return;
+            }
+            else
+            {
+                if(currentAction != ATTACK_STATE)
+                {
+                    Attack();
+                    return;
+                }
+                else
+                {
+                    Attacking();
+                    return;
+                }
             }
         }
     }
@@ -98,16 +115,49 @@ public class ZombieController : MonoBehaviour
         animator.SetBool(RUN_STATE, true);
     }
 
+    private void Attack()
+    {
+        ResetAnimation();
+        currentAction = ATTACK_STATE;
+        animator.SetBool(ATTACK_STATE, true);
+    }
+
+    private void Attacking()
+    {
+        if(this.animator.GetCurrentAnimatorStateInfo(0).IsName(ATTACK_STATE))
+        {
+            //compte le temps de l'animation
+            float normalizedTime = this.animator.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+            //fin de l'animation
+            if(normalizedTime > 1)
+            {
+                //Debug.Log("Stop");
+                weaponRight.StopAttack();
+                weaponLeft.StopAttack();
+                Stand();
+                return;
+            }
+
+            weaponRight.StartAttack();
+            weaponLeft.StartAttack();
+
+        }
+    }
+
     private void ResetAnimation()
     {
         animator.SetBool(STAND_STATE, false);
         animator.SetBool(DEFEATED_STATE, false);
         animator.SetBool(RUN_STATE, false);
+        animator.SetBool(ATTACK_STATE, false);
     }
 
     private bool MovingToTarget()
     {
         navMeshAgent.SetDestination(target.transform.position);
+
+        //si navMeshAgent n'est pas pret
+        if(navMeshAgent.remainingDistance == 0) return true;
 
         if(navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
         {
