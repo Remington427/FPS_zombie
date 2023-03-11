@@ -32,6 +32,13 @@ public class ReceiveAction : MonoBehaviour
 
     public void GetFucked()
     {
-        Destroy(gameObject);
+        if(!(gameObject.GetComponent<ZombieController>() != null))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SendMessage("Defeated", SendMessageOptions.DontRequireReceiver);
+        }
     }
 }
