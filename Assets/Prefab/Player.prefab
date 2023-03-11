@@ -209,6 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4062048684460187736}
+  - component: {fileID: 588176111320844765}
   m_Layer: 0
   m_Name: Arme
   m_TagString: Untagged
@@ -233,6 +234,25 @@ Transform:
   m_Father: {fileID: 2788443665447427400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588176111320844765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014056336224911459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8046e10c4d1fd479e0e7e973f17521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunDamage: 1
+  weaponRange: 200
+  hitForce: 100
+  fireRate: 0.25
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6676224008382005670
 GameObject:
   m_ObjectHideFlags: 0
