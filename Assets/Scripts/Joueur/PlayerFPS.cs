@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerFPS : MonoBehaviour
 {
     public Camera playerCamera;
+
+    //lampe-torche
+    public GameObject flashlight;
+    public bool isOn = true;
+
     private CharacterController characterController;
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 15f;
@@ -35,6 +40,13 @@ public class PlayerFPS : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
         //rotation
         CalculRotation();
+
+        //lampe-torche
+        if(Input.GetKeyDown("f"))
+        {
+            isOn = !isOn;
+            flashlight.SetActive(isOn);
+        }
     }
 
     void CalculMouvement()
